@@ -47,10 +47,11 @@ public class ServerManagerService {
 
     public void stopServer(String serverType) {
         Server server = servers.get(serverType);
-        if (server == null) {
-            throw new IllegalArgumentException("Unknown server type: " + serverType);
+        if (server != null) {
+            server.stop();
+           
+            System.gc();
         }
-        server.stop();
     }
 
     public boolean isServerRunning(String serverType) {
